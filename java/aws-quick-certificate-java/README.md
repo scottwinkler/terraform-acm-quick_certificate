@@ -1,0 +1,2 @@
+# aws-quick-certificate-java
+This repo contains all the java code for the cloudformation custom resources used in the  terraform module. It has a single class "QuickCertificateCustomResource.java" that implement all the logic for this particular custom resource, everything else is scaffolding.
