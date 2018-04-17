@@ -1,3 +1,3 @@
 provider "customresource" {
-  region = "${var.region}"
+  region = "${data.aws_region.current.name}"
 }
