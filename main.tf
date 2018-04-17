@@ -6,6 +6,8 @@ module "lambda_role" {
 
 resource "random_pet" "random" {}
 
+data "aws_region" "current" {}
+
 resource "aws_lambda_function" "custom_resources_lambda" {
   filename      = "${path.module}/java/aws-quick-certificate-java/target/aws-quick-certificate-java-1.0-SNAPSHOT.jar"
   description   = "Quick Certificate. Creates and deletes acm certificates for: ${var.project_name}"
@@ -25,6 +27,6 @@ resource "customresource_lambda_invoke" "quick_certificate" {
   resource_properties = {
     DomainName              = "${var.domain_name}"
     SubjectAlternativeNames = "${join(",", var.subject_alternative_names)}"
-    Region                  = "${var.region}"
+    Region                  = "${data.aws_region.current.name}"
   }
 }
